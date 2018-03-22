@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cityOne,#cityTwo,#pro,#city,#area{
+            vertical-align: text-top;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<select name="1" id="cityOne" onchange="selectList.onchange(event.target.value)"></select>
+<select name="2" id="cityTwo"></select>
+
+<div style="margin-top: 10px">
+    <select name="1" id="pro" onchange="selectListThree.onchange(event.target.value)"></select>
+    <select name="2" id="city"  onchange="selectListThree.subonchange(event.target.value)"></select>
+    <select name="3" id="area"></select>
+</div>
+</body>
+<script src="select.js" type="text/javascript"></script>
+<script>
+    //初始化下拉框对象
+    function selectListObj(pro,city,area) {
+        this.pro = pro;
+        this.city = city;
+        this.area = area;
+        this.proIndex = 0;
+        this.cityIndex = 0;
+    }
+    //定义初始化下拉框
+    selectListObj.prototype.init = function () {
+        var El = document.getElementById(this.pro),html1="";
+        for(var i =0;i<provinceList.length;i++){
+            html1 += "<option value='"+provinceList[i].name+"'>"+provinceList[i].name+"</option>";
+        }
+        El.innerHTML = html1;
+        this.loadList(provinceList[this.proIndex].cityList);
+    };
+
+    /**
+     * 定义加载菜单
+     * @param index  当前一级菜单所在位置序号
+     */
+    selectListObj.prototype.loadList = function (arr) {
+        var subEl = document.getElementById(this.city);
+        //初始化一级列表
+        var html2='';
+        for(var j=0;j<arr.length;j++){
+            html2 += "<option value='"+arr[j].name+"'>"+arr[j].name+"</option>";
+        }
+        subEl.innerHTML = html2;
+    };
+
+    selectListObj.prototype.loadThirdList = function (arr) {
+        var thirdEl = document.getElementById(this.area),html3='';
+        for(var j=0;j<arr.length;j++){
+            html3 += "<option value='"+arr[j]+"'>"+arr[j]+"</option>";
+        }
+        thirdEl.innerHTML = html3;
+    };
+
+    //定义初级菜单变化事件响应方法
+    selectListObj.prototype.onchange = function (val) {
+        //获取当前一级菜单序号
+        for(var index in provinceList){
+            if(provinceList[index].name == val){
+                this.proIndex = index ;
+                break;
+            }
+        }
+        this.loadList(provinceList[this.proIndex].cityList);
+        if(provinceList[this.proIndex].cityList[0].areaList)
+        {
+            this.loadThirdList(provinceList[this.proIndex].cityList[0].areaList);
+        }else {
+            this.loadThirdList([]);
+        }
+    };
+    //定义次级菜单变化事件响应方法
+    selectListObj.prototype.subonchange = function (val) {
+        //获取当前次级菜单序号
+        for(var index in provinceList){
+            if(provinceList[this.proIndex].cityList[index].name == val){
+                this.cityIndex=index ;
+                break;
+            }
+        }
+        this.loadThirdList(provinceList[this.proIndex].cityList[this.cityIndex].areaList);
+    };
+
+
+    //二级联动
+    var selectList = new selectListObj("cityOne","cityTwo");
+    selectList.init();
+
+
+    //三级联动
+    var selectListThree = new selectListObj("pro","city","area");
+    selectListThree.init();
+</script>
+</html>
