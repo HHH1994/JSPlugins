@@ -20,7 +20,8 @@
 
 .h_confirm .contain .tit{
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: bold;
     padding: 10px 0;
     border-bottom: 1px solid #c1c1c1;
 }
@@ -31,8 +32,8 @@
 }
 .h_confirm .contain .foot{
     text-align:right;
-    height: 37px;
-    line-height: 37px;
+    height: 31px;
+    line-height: 31px;
     padding: 5px 10px;
 }
 .prop_confirm_btn,.prop_confirm_close{
