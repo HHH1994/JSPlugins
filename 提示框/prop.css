@@ -31,4 +31,29 @@
 }
 .h_confirm .contain .foot{
     text-align:right;
+    height: 37px;
+    line-height: 37px;
+    padding: 5px 10px;
+}
+.prop_confirm_btn,.prop_confirm_close{
+    margin-right: 5px;
+    padding:7px 20px;
+    border-radius: 3px;
+    font-size: 13px;
+    color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.prop_confirm_btn{
+    background: deepskyblue;
+}
+.prop_confirm_btn:hover{
+    opacity: 0.8;
+}
+.prop_confirm_close{
+    background: red;
+}
+.prop_confirm_close:hover{
+    opacity: 0.8;
 }
