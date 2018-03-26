@@ -23,9 +23,25 @@
     font-size: 20px;
     font-weight: bold;
     padding: 10px 0;
+    position: relative;
     border-bottom: 1px solid #c1c1c1;
 }
-
+.tit_close{
+    position: absolute;
+    top:50%;
+    margin-top: -9px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    background: url("./custom-icon.png") no-repeat 0 -95px;
+    cursor: pointer;
+    -ms-transition:all 0.3s ease-in-out;
+    transition:all 0.3s ease-in-out;
+}
+.tit_close:hover{
+    -ms-transform:rotate(360deg) scale(1.2);
+    transform:rotate(360deg) scale(1.2);
+}
 .h_confirm .contain .content{
     height: 210px;
     border-bottom: 1px solid #c1c1c1;

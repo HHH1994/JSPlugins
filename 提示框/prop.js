@@ -18,6 +18,7 @@ hProp.prototype.init = function (option) {
     var warp = document.createElement("div");
     var contain = document.createElement("div");
     var tit = document.createElement("div");
+    var titClose = document.createElement("div");
     var content = document.createElement("div");
     var foot = document.createElement("div");
     tit.innerHTML = o.title;
@@ -27,13 +28,16 @@ hProp.prototype.init = function (option) {
     this.addClass(tit,"tit");
     this.addClass(content,"content");
     this.addClass(foot,"foot");
+    this.addClass(titClose,"tit_close");
     //添加元素
     warp.appendChild(contain);
     contain.appendChild(tit);
     contain.appendChild(content);
     contain.appendChild(foot);
+    tit.appendChild(titClose);
     document.body.appendChild(warp);
     //加载底部按钮
+    titClose.addEventListener('click',this.removeEl);
     this.loadBtn(o.type,o.onOk);
 };
 
