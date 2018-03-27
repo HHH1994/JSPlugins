@@ -22,6 +22,7 @@ hProp.prototype.init = function (option) {
     var content = document.createElement("div");
     var foot = document.createElement("div");
     tit.innerHTML = o.title;
+    content.innerHTML = o.content;
     //给元素添加样式
     this.addClass(warp,"h_confirm");
     this.addClass(contain,"contain");

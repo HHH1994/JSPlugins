@@ -44,6 +44,8 @@
 }
 .h_confirm .contain .content{
     height: 210px;
+    text-align: center;
+    line-height: 210px;
     border-bottom: 1px solid #c1c1c1;
 }
 .h_confirm .contain .foot{
