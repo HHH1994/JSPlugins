@@ -39,7 +39,14 @@ Carousel.prototype.init = function (option) {
     right.className += "right";
     right.src="./img/left.png";
     pagenation.className += "pagenation";
-    aList[0].className +="active";
+    aList.forEach((item,index)=>{
+        if(index==0){
+            item.className +="pagenation_dot active";
+        }else {
+            item.className +="pagenation_dot";
+        }
+
+    });
     imgList.forEach(function (item,index) {
         //添加样式
         if(index==0){
@@ -66,7 +73,6 @@ Carousel.prototype.init = function (option) {
     right.addEventListener("click",()=>{this.next(o.list.length);});
     aList.forEach((item,index)=>{
         item.addEventListener("click", (event) =>{
-            console.log(index);
             this.select(index);
         });
     });
@@ -114,7 +120,7 @@ Carousel.prototype.select = function (index) {
 
 //获取当前页面序号
 function getActiveIndex(){
-    var a = document.getElementsByTagName('a');
+    var a = document.getElementsByClassName('pagenation_dot');
     var index;
     for(var i = 0;i<a.length;i++) {
         if (a[i].className.indexOf("active")!= -1) {
@@ -130,7 +136,7 @@ function getActiveIndex(){
  * @param index 当前序列号
  */
 function addActive(index,tIndex){
-    var a = document.getElementsByTagName('a');
+    var a = document.getElementsByClassName('pagenation_dot');
     a[index].className = a[index].className.replace("active","");
     a[tIndex].className += " active";
 }
