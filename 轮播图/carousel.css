@@ -1,0 +1,64 @@
+.carousel{
+    width: 600px;
+    height: 500px;
+    margin:0 auto;
+    position: relative;
+    border: 1px solid #c1c1c1;
+}
+.carousel .pic{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none;
+}
+.carousel .show{
+    display: inline-block;
+}
+
+.carousel .left{
+    width: 30px;
+    height:30px;
+    position: absolute;
+    top:50%;
+    margin-top: -15px;
+    cursor: pointer;
+}
+
+.carousel .right{
+    width: 30px;
+    height:30px;
+    position: absolute;
+    top:50%;
+    right: 0;
+    margin-top: -15px;
+    cursor: pointer;
+    transform: rotate(180deg);
+}
+
+.carousel .right:hover{
+
+}
+
+/*分页*/
+.pagenation{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -40px;
+}
+.pagenation a{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+    border-radius: 50%;
+    background: #000;
+    cursor: pointer;
+}
+.pagenation a:hover{
+    background: #ff0000;
+}
+.pagenation .active{
+    background: #ff0000;
+}
