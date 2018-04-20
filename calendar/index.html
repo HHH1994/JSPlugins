@@ -8,9 +8,15 @@
 <body>
     <div class="h-calendar">
         <div class="one">
-            <div class="year">2018</div>
+            <div class="year"><span class="currentYear">2018</span></div>
             <div class="month">
-                <a class="lastMonth" onclick="lastMonth()"></a> 2<a class="nextMonth" onclick="nextMonth()"></a>
+                <a onclick="lastMonth()">
+                    <img src="next.png" class="lastMonth">
+                </a>
+                <span class="currentMonth">4</span>
+                <a onclick="nextMonth()">
+                    <img src="next.png" class="nextMonth" alt="">
+                </a>
             </div>
         </div>
         <table>
@@ -35,17 +41,18 @@
         var firstDay = new Date(year,(month-1),1).getDay();//获取当前月的第一天
         var lastDate = new Date(year,month,0).getDate();//获取当前月的最后一号
         var lastMonCout = firstDay==0?6:firstDay-1;
+        var today = new Date().getDate();
         var lastMonLastDay = new Date(year,month-1,0).getDate();
         var html = "";
         for(var i =1;i<=42;i++){
             //判断是否换行
             html+=i%7==1?"<tr>":"";
             if(i<=lastMonCout){
-                html+="<td>"+(lastMonLastDay-lastMonCout+i)+"</td>"
+                html+="<td class='notCurrentMonthDay'><span>"+(lastMonLastDay-lastMonCout+i)+"</span></td>"
             }else if(i>lastDate+lastMonCout){
-                html+="<td>"+(i-lastDate-lastMonCout)+"</td>"
+                html+="<td class='notCurrentMonthDay'><span>"+(i-lastDate-lastMonCout)+"</span></td>"
             }else {
-                html+="<td>"+(i-lastMonCout)+"</td>"
+                html+=i==today?"<td><span  class='today'>"+(i-lastMonCout)+"</span></td>":"<td><span>"+(i-lastMonCout)+"</span></td>";
             }
             //判断是否结尾
             html+=i%7==0?"</tr>":"";
@@ -57,12 +64,20 @@
 
     //上个月
     function lastMonth() {
-
+        var currentMonth = parseInt(document.getElementsByClassName("currentMonth")[0].innerHTML);
+        var currentYear = parseInt(document.getElementsByClassName("currentYear")[0].innerHTML);
+        document.getElementsByClassName("currentMonth")[0].innerHTML = currentMonth==1?12:currentMonth-1;
+        document.getElementsByClassName("currentYear")[0].innerHTML= currentMonth==1?currentYear-1:currentYear;
+        currentMonth==1?loadCalendar(currentYear-1,1):loadCalendar(currentYear,currentMonth-1);
     }
 
     //下个月
     function nextMonth() {
-
+        var currentMonth = parseInt(document.getElementsByClassName("currentMonth")[0].innerHTML);
+        var currentYear = parseInt(document.getElementsByClassName("currentYear")[0].innerHTML);
+        document.getElementsByClassName("currentMonth")[0].innerHTML = currentMonth==12?1:currentMonth+1;
+        document.getElementsByClassName("currentYear")[0].innerHTML= currentMonth==12?currentYear+1:currentYear;
+        currentMonth==12?loadCalendar(currentYear+1,1):loadCalendar(currentYear,currentMonth-1);
     }
 </script>
 </html>

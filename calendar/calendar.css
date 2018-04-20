@@ -16,6 +16,43 @@
 .month{
     float: right;
 }
+.lastMonth,.nextMonth{
+    cursor: pointer;
+}
+.lastMonth{
+    display: inline-block;
+    margin-right: 20px;
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.nextMonth{
+    display: inline-block;
+    margin-left: 20px;
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+}
+
+.currentMonth{
+    display: inline-block;
+    width: 20px;
+}
+
+.today{
+    background: deepskyblue;
+    border: 1px solid deepskyblue;
+    color: #fff;
+}
+
+.notCurrentMonthDay{
+    color: #d1d1d1;
+}
 
 /*日历*/
 table{
@@ -24,5 +61,19 @@ table{
     text-align: center;
 }
 td{
-    padding: 5px;
+   padding: 5px;
+}
+
+td span{
+    display: inline-block;
+    border: 1px solid #fff;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+td span:hover{
+    border: 1px solid deepskyblue;
 }
