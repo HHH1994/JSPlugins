@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日历</title>
+    <link rel="stylesheet" href="calendar.css">
+</head>
+<body>
+    <div class="h-calendar">
+        <div class="one">
+            <div class="year">2018</div>
+            <div class="month">
+                <a class="lastMonth" onclick="lastMonth()"></a> 2<a class="nextMonth" onclick="nextMonth()"></a>
+            </div>
+        </div>
+        <table>
+            <!--week-->
+            <tr>
+                <td>一</td>
+                <td>二</td>
+                <td>三</td>
+                <td>四</td>
+                <td>五</td>
+                <td>六</td>
+                <td>日</td>
+            </tr>
+        </table>
+        <table class="calendar-content">
+        </table>
+    </div>
+</body>
+<script>
+
+    function loadCalendar(year,month){
+        var firstDay = new Date(year,(month-1),1).getDay();//获取当前月的第一天
+        var lastDate = new Date(year,month,0).getDate();//获取当前月的最后一号
+        var lastMonCout = firstDay==0?6:firstDay-1;
+        var lastMonLastDay = new Date(year,month-1,0).getDate();
+        var html = "";
+        for(var i =1;i<=42;i++){
+            //判断是否换行
+            html+=i%7==1?"<tr>":"";
+            if(i<=lastMonCout){
+                html+="<td>"+(lastMonLastDay-lastMonCout+i)+"</td>"
+            }else if(i>lastDate+lastMonCout){
+                html+="<td>"+(i-lastDate-lastMonCout)+"</td>"
+            }else {
+                html+="<td>"+(i-lastMonCout)+"</td>"
+            }
+            //判断是否结尾
+            html+=i%7==0?"</tr>":"";
+        }
+        document.getElementsByClassName("calendar-content")[0].innerHTML = html;
+    }
+
+    loadCalendar(2018,4);
+
+    //上个月
+    function lastMonth() {
+
+    }
+
+    //下个月
+    function nextMonth() {
+
+    }
+</script>
+</html>

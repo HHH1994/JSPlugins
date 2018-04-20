@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/*年、月内容*/
+.one{
+    background-color:deepskyblue;
+    color: white;
+    padding: 20px;
+}
+.month,.year{
+    display: inline-block;
+    font-size: 20px;
+}
+.month{
+    float: right;
+}
+
+/*日历*/
+table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+td{
+    padding: 5px;
+}
