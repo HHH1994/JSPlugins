@@ -12,6 +12,7 @@
 .month,.year{
     display: inline-block;
     font-size: 20px;
+    cursor: pointer;
 }
 .month{
     float: right;

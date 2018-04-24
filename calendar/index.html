@@ -36,7 +36,11 @@
     </div>
 </body>
 <script>
-
+    /**
+     * 加载当前月份日历
+     * @param year
+     * @param month
+     */
     function loadCalendar(year,month){
         var firstDay = new Date(year,(month-1),1).getDay();//获取当前月的第一天
         var lastDate = new Date(year,month,0).getDate();//获取当前月的最后一号
@@ -48,16 +52,18 @@
             //判断是否换行
             html+=i%7==1?"<tr>":"";
             if(i<=lastMonCout){
-                html+="<td class='notCurrentMonthDay'><span>"+(lastMonLastDay-lastMonCout+i)+"</span></td>"
+                html+="<td class='notCurrentMonthDay'><span class='date'>"+(lastMonLastDay-lastMonCout+i)+"</span></td>"
             }else if(i>lastDate+lastMonCout){
-                html+="<td class='notCurrentMonthDay'><span>"+(i-lastDate-lastMonCout)+"</span></td>"
+                html+="<td class='notCurrentMonthDay'><span class='date'>"+(i-lastDate-lastMonCout)+"</span></td>"
             }else {
-                html+=i==today?"<td><span  class='today'>"+(i-lastMonCout)+"</span></td>":"<td><span>"+(i-lastMonCout)+"</span></td>";
+                html+=i==today?"<td><span  class='date today'>"+(i-lastMonCout)+"</span></td>":"<td><span class='date'>"+(i-lastMonCout)+"</span></td>";
             }
             //判断是否结尾
             html+=i%7==0?"</tr>":"";
         }
         document.getElementsByClassName("calendar-content")[0].innerHTML = html;
+        var dateList = document.getElementsByClassName("calendar-content");
+        dateList[0].addEventListener("click",changeToday);
     }
 
     loadCalendar(2018,4);
@@ -78,6 +84,32 @@
         document.getElementsByClassName("currentMonth")[0].innerHTML = currentMonth==12?1:currentMonth+1;
         document.getElementsByClassName("currentYear")[0].innerHTML= currentMonth==12?currentYear+1:currentYear;
         currentMonth==12?loadCalendar(currentYear+1,1):loadCalendar(currentYear,currentMonth-1);
+    }
+
+    //更改当前天
+    function changeToday(){
+        //判断点击事件是否在"date"类元素上
+        if(event.target.className.indexOf("date")==-1){
+            return;
+        }
+        //删除当前"today"样式
+        var dateList = document.getElementsByClassName("date");
+        for(var i =0;i<dateList.length;i++){
+            if(dateList[i].className.indexOf("today")!=-1){
+                dateList[i].className =   dateList[i].className.replace("today","");
+                break;
+            }
+        }
+        //获取当前序号,添加当前today
+        event.target.className += " today";
+
+    }
+
+    function loadMonthList(){
+
+    }
+    function loadYearList() {
+
     }
 </script>
 </html>
