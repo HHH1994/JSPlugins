@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="ajax.js"></script>
+<script>
+   var a = new Ajax();
+  /* a.get({
+       url:"http://111.231.89.14:8080/api/app/kd/findKData.action?pageNo=1&pageSize=60&productId=17&dataType=1min",
+       success:function(res){
+           console.log(res);
+       }
+   });
+*/
+   a.post({
+       url:"http://192.168.0.103:8080/api/app/user/login.action?account=15182888014&password=111111",
+       success:function (res) {
+           console.log(res);
+       }
+   });
+</script>
+</html>

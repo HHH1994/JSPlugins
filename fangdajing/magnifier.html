@@ -2,43 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>放大镜</title>
-    <style>
-        .pic{
-            width: 700px;
-            height:500px;
-            position: relative;
-        }
-        .targetPic{
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-        .move-item{
-            display: none;
-            position: absolute;
-            background: #ff7500;
-            width: 100px;
-            height: 100px;
-            cursor: crosshair;
-            opacity: 0.5;
-            z-index: 10;
+    <title>放大</title>
+    <style type="text/css">
+        .prompt-explain {
+            margin-bottom: 50px;
+            border: 2px dotted blue;
+            line-height: 1.5;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="magnifier.css" />
 </head>
 <body>
-<div class="pic">
-    <span class="move-item"></span>
-    <img src="./img/1.jpg" alt="" class="targetPic">
+<div class="prompt-explain">
+    <dl>
+        <dt>商品放大镜组件说明:</dt>
+        <dd>
+            <p>作用：商品的图片放大</p>
+            <p>依赖:依赖magnifier.css</p>
+            <p>参数：new Magnifier(magnifierContainer)：1.magnifierContainer(必须)：绑定该放大镜组件的dom元素。注意：该组件一定要在window.onload方法下调用否则IE下获取不到图片的宽度</p>
+            <p>兼容：IE8+</p>
+        </dd>
+    </dl>
 </div>
-</body>
-<script>
-    var moveItem = document.getElementsByClassName("move-item")[0];
-    document.getElementsByClassName("targetPic")[0].addEventListener("mousemove",function (e) {
-        console.log(e);
-        moveItem.style.display = "inline-block";
-        moveItem.style.top = (e.clientY-100)+"px";
-        moveItem.style.left = (e.clientX-100)+"px";
-    });
+<div class="magnifier-container" id="magnifierContainer">
+    <div class="magnifier-small" id="magnifierSmall">
+        <span class="magnifier-move" id="magnifierMove"></span>
+        <img src="img/1.jpg" />
+    </div>
+    <div class="magnifier-big" id="magnifierBig">
+        <img src="img/1.jpg" />
+    </div>
+</div>
+<script src='magnifier.js'></script>
+<script type="text/javascript">
+    window.onload  = function() {
+        var magnifierContainer = document.getElementById('magnifierContainer');
+        new Magnifier(magnifierContainer);
+    }
 </script>
+</body>
 </html>
